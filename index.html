@@ -4,11 +4,51 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+      @property --360 {
+        syntax: '<angle>';
+        initial-value: 0deg;
+        inherits: false;
+      }
       body{
-        background-image: url('https://html5up.net/uploads/demos/paradigm-shift/images/pic01.jpg');
+        background: linear-gradient(var(--360), rgba(49, 121, 237, 1), rgba(68,110,255, 1));
+        animation: rotate-bak 4s ease-in-out infinite;
+        /* background-image: url('https://html5up.net/uploads/demos/paradigm-shift/images/pic01.jpg'); */
+      }
+      @keyframes rotate-bak {
+        to {
+          --360: 360deg;
+        }
+      }
+
+      .center-screen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center; 
+      }
+      
+      .main-buttons {
+        display: flex;
+        gap: 15px;
+      }
+      .yellow-button {
+        background-color: yellow;
+        color: black;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 35px;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
-    <h1>AaaaaAAAAAAAAA</h1>
+    <div class="center-screen">
+      <p style="color:white;">Vaquita Split</p>
+      <div class="main-buttons">
+        <button class="yellow-button">Join Room</button>
+        <button class="yellow-button">Create Room</button>
+      </div>
+    </div>
   </body>
 </html>
