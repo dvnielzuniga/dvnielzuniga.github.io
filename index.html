@@ -99,6 +99,34 @@ button {
     background: #adcf17;
     transform: scale(1.05);
   }
+
+
+  #splashModal {
+  border: none;
+  border-radius: 20px; 
+  padding: 2rem;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  max-width: 50vh;
+  text-align: center;
+}
+#splashModal[open] {
+  animation: splash 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+#splashModal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px); /* Opcional: desenfoque */
+}
+@keyframes splash {
+  from {
+    opacity: 0;
+    transform: scale(0.5); /* Inicia pequeño */
+  }
+  to {
+    opacity: 1;
+    transform: scale(1); /* Crece a su tamaño original con rebote */
+  }
+}
 </style>
 </head>
 <body style="background-color:blue;">
@@ -113,5 +141,41 @@ button {
   </div>
 </div>
 
+<div class=" buttons">
+<dialog id="splashModal">
+    <div class="centered buttons">
+  <button class="btn btn-join" onclick="window.open('http://github.com/dvnielzuniga/vaquita-split');"><a style="color: black; padding-left: 1px; padding-right: 1px;">Join Room</a></button>
+    <button class="btn btn-join" onclick="window.open('http://github.com/dvnielzuniga/vaquita-split');"><a style="color: black; padding-left: 1px; padding-right: 1px;">Create Room</a></button>
+  </div>
+   <img class="protected" src="https://dvnielzuniga.github.io/VS_logo.png" alt="Snow" style="width:50%;">
+</dialog>
+</div>
+
 </body>
+
+<script>
+  // Triggers instantly once the DOM is parsed
+  // document.getElementById('splashModal').showModal();
+  const modal = document.getElementById('splashModal');
+
+    // Cerrar al hacer clic en el backdrop
+    modal.addEventListener('click', (event) => {
+    const rect = modal.getBoundingClientRect();
+    const isInDialog = (
+        event.clientX >= rect.left &&
+        event.clientX <= rect.right &&
+        event.clientY >= rect.top &&
+        event.clientY <= rect.bottom
+    );
+    
+    if (!isInDialog) {
+        modal.close();
+    }
+    });
+
+    // Abrir el modal al cargar
+    modal.showModal();
+
+</script>
+
 </html> 
