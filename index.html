@@ -1,181 +1,194 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-
-    @property --angle {
-        syntax: '<angle>';
-        initial-value: 0deg;
-        inherits: false;
-      }
-      :root {
-        --blue:rgba(31, 107, 255, 1);
-        --blue-dak:rgba(15, 78, 216, 1);
-        --yellow:#ffd84d;
-        --aqua:#23d7c6;
-        --white:#ffffff;
-      }
-
-      body {
-        margin: 0;
-        padding:0;
-        min-height: 100vh; /* Asegura que cubra toda la pantalla */
-
-        /* 2. Aplicamos el degradado usando la variable */
-        background: linear-gradient(var(--angle), rgba(31, 107, 255, 1), rgb(14, 34, 145));
-        background-attachment: fixed; /* Evita que el fondo se mueva al hacer scroll */
-
-        /* 3. Animación de 1 segundo en bucle infinito */
-        animation: rotateBackground 10s ease-in-out infinite;
-        font-family: Arial, Helvetica, sans-serif;
-        /* background: linear-gradient(160deg, rgba(31, 107, 255, 1), rgba(15, 78, 216, 1)); */
-        color: var(--white);
-        display: flex;
-        justify-content:center;
-        align-items:center;
-        height:100vh;
-      }
-      
-      @keyframes rotateBackground {
-        to {
-          --angle: 360deg;
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* 1. ANIMATED BACKGROUND VARIABLES */
+        @property --angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
         }
-      }
-      .protected {
-        -moz-user-select: -moz-none;
-        -khtml-user-select: none;
-        -webkit-user-select: none;
-        -o-user-select: none;
-        user-select: none;
-        -webkit-user-drag: none;
-      }
-.container {
-  position: absolute;
-  text-align: center;
-  color: white;
-}
-.centered {
-  position: absolute;
-  top: 75%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.buttons {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
-button {
-  padding: 10px 10px;
-  border-radius: 45px;
-  font-size: 18px;
-  cursor: pointer;
-  transition: 0.2s ease;
-  display: flex;
-  align-items: center;
-}
 
-  /* JOIN (secondary) */
-  .btn-join {
-    background: transparent;
-    border: 2px solid #1ED6C3;
-    color: white;
-}
+        :root {
+            --blue: #1f6bff;
+            --dark-blue: #0e2291;
+            --yellow: #ffd84d;
+            --aqua: #23d7c6;
+        }
 
-  .btn-join:hover {
-    background: rgba(30, 214, 195, 0.1);
-    transform: scale(1.03);
-  }
+        /* 2. BODY & PROTECTION */
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(var(--angle), var(--blue), var(--dark-blue));
+            background-attachment: fixed;
+            animation: rotateBackground 10s ease-in-out infinite;
+            overflow: hidden;
+            /* Keeps UI from moving */
 
-  /* CREATE (primary) */
-  .btn-create {
-    background: #1ED6C3;
-    border: none;
-    color: white;
-  }
+            /* GLOBAL PROTECTION: No text selection */
+            
+            -webkit-user-drag: none;
+        }
 
-  .btn-create:hover {
-    background: #adcf17;
-    transform: scale(1.05);
-  }
+        @keyframes rotateBackground {
+            to {
+                --angle: 360deg;
+            }
+        }
 
+        /* 3. CENTERED LAYOUT (THE HARMONY) */
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            max-width: 450px;
+            /* Limits size on large screens */
+            position: relative;
+        }
 
-  #splashModal {
-  border: none;
-  border-radius: 20px; 
-  padding: 2rem;
-  background: white;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  max-width: 50vh;
-  text-align: center;
-}
-#splashModal[open] {
-  animation: splash 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-#splashModal::backdrop {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px); /* Opcional: desenfoque */
-}
-@keyframes splash {
-  from {
-    opacity: 0;
-    transform: scale(0.5); /* Inicia pequeño */
-  }
-  to {
-    opacity: 1;
-    transform: scale(1); /* Crece a su tamaño original con rebote */
-  }
-}
-</style>
+        .main-logo {
+            width: 100%;
+            height: auto;
+            /* IMAGE PROTECTION: No dragging */
+            -webkit-user-drag: none;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+        }
+
+        /* 4. SOCIAL BUTTONS (BOTTOM ALIGNED) */
+        .social-row {
+            display: flex;
+            width: 80%;
+            /* Slightly narrower than the logo for better look */
+            justify-content: center;
+            gap: 20px;
+            margin-top: -10%;
+            /* Pulls buttons up slightly into the logo's white space */
+        }
+
+        .btn-social {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--aqua);
+            border-radius: 50%;
+            /* Circle buttons */
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-social img {
+            width: 24px;
+            height: 24px;
+             user-select: none;
+            -webkit-user-drag: none;
+            
+            /* Keep it clickable */
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .btn-social:hover {
+            background: var(--aqua);
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 0 15px var(--aqua);
+        }
+
+        /* 5. MODAL STYLING */
+        #splashModal {
+            border: none;
+            border-radius: 20px;
+            padding: 2rem;
+            background: white;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 300px;
+        }
+
+        #splashModal::backdrop {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-modal {
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--aqua);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #eee;
+            color: #333;
+        }
+    </style>
 </head>
-<body style="background-color:blue;">
 
+<body>
 
-<div class="container">
-  <img class="protected" src="https://dvnielzuniga.github.io/VS_logo.png" alt="Snow" style="width:100%;">
-  
-  <div class="centered buttons">
-  <button class="btn btn-join" onclick="window.open('http://www.instagram.com/dvnielzuniga');"><img class="protected" src="https://img.icons8.com/?size=30&id=32292&format=png&color=ffffff"></button>
-    <button class="btn btn-join" onclick="window.open('http://github.com/dvnielzuniga/vaquita-split');"><img class="protected" src="https://img.icons8.com/?size=30&id=zehXPLJSAbBB&format=png&color=ffffff"></button>
-  </div>
-</div>
+    <div class="content-wrapper">
+        <!-- Logo -->
+        <img src="https://dvnielzuniga.github.io/VS_logo.png" alt="Logo" class="main-logo">
 
-<div class=" buttons">
-<dialog id="splashModal">
-    <div class="centered buttons">
-  <button class="btn btn-join" onclick="window.open('http://github.com/dvnielzuniga/vaquita-split');"><a style="color: black; padding-left: 1px; padding-right: 1px;">Join Room</a></button>
-    <button class="btn btn-join" onclick="window.open('http://github.com/dvnielzuniga/vaquita-split');"><a style="color: black; padding-left: 1px; padding-right: 1px;">Create Room</a></button>
-  </div>
-   <img class="protected" src="https://dvnielzuniga.github.io/VS_logo.png" alt="Snow" style="width:50%;">
-</dialog>
-</div>
+        <!-- Social Icons Row -->
+        <div class="social-row">
+            <div class="btn-social" onclick="window.open('http://www.instagram.com/dvnielzuniga');">
+                <img src="https://img.icons8.com/?size=30&id=32292&format=png&color=ffffff" alt="IG">
+            </div>
+            <div class="btn-social" onclick="window.open('http://github.com/dvnielzuniga/vaquita-split');">
+                <img src="https://img.icons8.com/?size=30&id=zehXPLJSAbBB&format=png&color=ffffff" alt="GH">
+            </div>
+        </div>
+    </div>
 
+    <!-- Modal -->
+    <dialog id="splashModal">
+        <h2 style="color: #333; margin-top: 0;">Vaquita Split</h2>
+        <img src="https://dvnielzuniga.github.io/VS_logo.png" style="width: 100px;" alt="logo">
+        <div class="modal-buttons">
+            <button class="btn-modal btn-primary" onclick="modal.close()">Create Room</button>
+            <button class="btn-modal btn-secondary" onclick="modal.close()">Join Room</button>
+        </div>
+    </dialog>
+
+    <script>
+        const modal = document.getElementById('splashModal');
+
+        // Show modal on load
+        window.onload = () => {
+            modal.showModal();
+        };
+
+        // Close on backdrop click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.close();
+        });
+    </script>
 </body>
 
-<script>
-  // Triggers instantly once the DOM is parsed
-  // document.getElementById('splashModal').showModal();
-  const modal = document.getElementById('splashModal');
-
-    // Cerrar al hacer clic en el backdrop
-    modal.addEventListener('click', (event) => {
-    const rect = modal.getBoundingClientRect();
-    const isInDialog = (
-        event.clientX >= rect.left &&
-        event.clientX <= rect.right &&
-        event.clientY >= rect.top &&
-        event.clientY <= rect.bottom
-    );
-    
-    if (!isInDialog) {
-        modal.close();
-    }
-    });
-
-    // Abrir el modal al cargar
-    modal.showModal();
-
-</script>
-
-</html> 
+</html>
