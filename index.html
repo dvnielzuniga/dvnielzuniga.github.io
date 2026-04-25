@@ -42,6 +42,14 @@
           --angle: 360deg;
         }
       }
+      .protected {
+        -moz-user-select: -moz-none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+        -webkit-user-drag: none;
+      }
 .container {
   position: absolute;
   text-align: center;
@@ -93,16 +101,16 @@ button {
   }
 </style>
 </head>
-<body style="background-color:blue;">
+<body class="protected" style="background-color:blue;">
 
 
-<div class="container">
-  <img src="https://dvnielzuniga.github.io/VS_logo.png" alt="Snow" style="width:100%;">
+<div class="container protected">
+  <img class="protected" src="https://dvnielzuniga.github.io/VS_logo.png" alt="Snow" style="width:100%;">
   
-  <div class="centered">
-  <div class="buttons">
-  <button class="btn btn-join" onclick="window.open('http://www.instagram.com/dvnielzuniga');"><img  src="https://img.icons8.com/?size=30&id=32292&format=png&color=ffffff"></button>
-    <button class="btn btn-join" onclick="window.open('http://github.com/dvnielzuniga/vaquita-split');"><img  src="https://img.icons8.com/?size=30&id=zehXPLJSAbBB&format=png&color=ffffff"></button>
+  <div class="centered protected">
+  <div class="buttons protected">
+  <button class="btn btn-join protected" onclick="window.open('http://www.instagram.com/dvnielzuniga');"><img class="protected" src="https://img.icons8.com/?size=30&id=32292&format=png&color=ffffff"></button>
+    <button class="btn btn-join protected" onclick="window.open('http://github.com/dvnielzuniga/vaquita-split');"><img class="protected" src="https://img.icons8.com/?size=30&id=zehXPLJSAbBB&format=png&color=ffffff"></button>
   </div>
   </div>
 </div>
